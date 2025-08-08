@@ -3,6 +3,11 @@ import type { RegisterDto, LoginDto } from "../dtos/auth.dto.js";
 import { register, login, refreshTokens, logout } from "../services/auth.service.js";
 import { successResponse } from "../utils/response.util.js";
 
+/**
+ * @desc Register a new user
+ * @route POST /api/auth/v1/register
+ * @access Public
+ */
 export const registerUser = async (req: Request, res: Response) => {
     const { fullname, email, password } = req.body as RegisterDto;
 
@@ -15,6 +20,11 @@ export const registerUser = async (req: Request, res: Response) => {
     }, "User registered successfully"));
 };
 
+/**
+ * @desc Login user and get access & refresh tokens
+ * @route POST /api/auth/v1/login
+ * @access Public
+ */
 export const loginUser = async (req: Request, res: Response) => {
     const { email, password } = req.body as LoginDto;
 
@@ -27,6 +37,11 @@ export const loginUser = async (req: Request, res: Response) => {
     }, "Login successful"));
 };
 
+/**
+ * @desc Get a new access token using refresh token
+ * @route POST /api/auth/v1/refresh
+ * @access Public
+ */
 export const refreshToken = async (req: Request, res: Response) => {
     const refreshTokenCookie = req.cookies.refreshToken;
     const { accessToken, refreshToken: newRefreshToken } = await refreshTokens(refreshTokenCookie);
@@ -35,6 +50,11 @@ export const refreshToken = async (req: Request, res: Response) => {
     res.json(successResponse({ accessToken }, "Token refreshed"));
 };
 
+/**
+ * @desc Logout user and invalidate refresh token
+ * @route POST /api/auth/v1/logout
+ * @access Private
+ */
 export const logoutUser = async (req: Request, res: Response) => {
     const refreshTokenCookie = req.cookies.refreshToken;
 

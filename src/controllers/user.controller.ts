@@ -7,7 +7,7 @@ import { AppError } from "../utils/app-error.util.js";
 
 /**
  * @desc Forgot password - send password reset link to email
- * @route POST /api/auth/forgot-password
+ * @route POST /api/user/v1/forgot-password
  * @access Public
  */
 export const forgotPassword = async (req: Request, res: Response): Promise<void> => {
@@ -42,7 +42,7 @@ export const forgotPassword = async (req: Request, res: Response): Promise<void>
 
 /**
  * @desc Reset password using token
- * @route POST /api/auth/reset-password/:token
+ * @route POST /api/user/v1/reset-password/:token
  * @access Public
  */
 export const resetPassword = async (req: Request, res: Response): Promise<void> => {
@@ -52,7 +52,7 @@ export const resetPassword = async (req: Request, res: Response): Promise<void> 
     if (!token) {
         throw new AppError("Token is required", 400);
     }
-    
+
     if (!newPassword) {
         throw new AppError("New password is required", 400);
     }
