@@ -11,7 +11,7 @@ export const register = async ({ fullname, email, password }: RegisterDto) => {
     const user = new User({ fullname, email, password });
     await user.save();
 
-    const payload: TokenPayloadDto = { id: user._id.toString() };
+    const payload: TokenPayloadDto = { id: user._id.toString(), email: user.email };
     const accessToken = generateAccessToken(payload);
     const refreshToken = generateRefreshToken(payload);
 
@@ -27,7 +27,7 @@ export const login = async ({ email, password }: LoginDto) => {
         throw new AppError("Invalid Credentials", 401);
     }
 
-    const payload: TokenPayloadDto = { id: user._id.toString() };
+    const payload: TokenPayloadDto = { id: user._id.toString(), email: user.email };
     const accessToken: string = generateAccessToken(payload);
     const refreshToken: string = generateRefreshToken(payload);
 
@@ -47,7 +47,7 @@ export const refreshTokens = async (token: string) => {
         throw new AppError("Invalid refresh token", 403);
     }
 
-    const payload: TokenPayloadDto = { id: user._id.toString() };
+    const payload: TokenPayloadDto = { id: user._id.toString(), email: user.email };
     const accessToken = generateAccessToken(payload);
     const newRefreshToken = generateRefreshToken(payload);
 
@@ -56,3 +56,14 @@ export const refreshTokens = async (token: string) => {
 
     return { accessToken, refreshToken: newRefreshToken };
 }
+
+export const logout = async (refreshToken: string) => {
+    // Example: if refresh tokens are stored in the user collection
+    const user = await User.findOne({ refreshToken });
+    if (user) {
+        user.refreshToken = null; // clear from DB
+        await user.save();
+    }
+
+    return true;
+};

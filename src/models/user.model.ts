@@ -7,7 +7,7 @@ export interface IUser extends Document {
     fullname: string;
     email: string;
     password: string;
-    refreshToken?: string;
+    refreshToken?: string | null;
     comparePassword(password: string): Promise<boolean>;
 }
 

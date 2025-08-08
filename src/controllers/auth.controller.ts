@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
 import type { RegisterDto, LoginDto } from "../dtos/auth.dto.js";
-import { register, login, refreshTokens } from "../services/auth.service.js";
+import { register, login, refreshTokens, logout } from "../services/auth.service.js";
 import { successResponse } from "../utils/response.util.js";
 
 export const registerUser = async (req: Request, res: Response) => {
@@ -33,4 +33,15 @@ export const refreshToken = async (req: Request, res: Response) => {
 
     res.cookie("refreshToken", newRefreshToken, { httpOnly: true, secure: false });
     res.json(successResponse({ accessToken }, "Token refreshed"));
+};
+
+export const logoutUser = async (req: Request, res: Response) => {
+    const refreshTokenCookie = req.cookies.refreshToken;
+
+    await logout(refreshTokenCookie);
+
+    // Clear the cookie
+    res.clearCookie("refreshToken", { httpOnly: true, secure: false });
+    
+    res.json(successResponse(null, "Logged out successfully"));
 };

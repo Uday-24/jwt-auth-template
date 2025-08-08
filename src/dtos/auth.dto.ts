@@ -11,4 +11,5 @@ export interface LoginDto {
 
 export interface TokenPayloadDto {
     id: string;
+    email: string;
 }
