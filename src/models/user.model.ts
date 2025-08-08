@@ -28,8 +28,7 @@ const userSchema = new Schema<IUser>({
     password: {
         type: String,
         required: true,
-        minlength: 6,
-        maxlength: 20
+        minlength: 6
     },
     refreshToken: {
         type: String
