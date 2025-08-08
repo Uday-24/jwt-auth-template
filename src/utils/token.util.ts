@@ -4,7 +4,7 @@ import type { TokenPayloadDto } from "../dtos/auth.dto.js";
 import { config } from "../config/env.config.js";
 import { AppError } from "./app-error.util.js";
 
-export const generateAccessToken = async (payload: TokenPayloadDto) => {
+export const generateAccessToken = (payload: TokenPayloadDto) => {
     if (!config.jwtAccessSecret) {
         throw new AppError("JWT secret is not defined", 400);
     }
