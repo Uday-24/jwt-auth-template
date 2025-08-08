@@ -52,7 +52,7 @@ export const resetPassword = async (req: Request, res: Response): Promise<void> 
     if (!token) {
         throw new AppError("Token is required", 400);
     }
-
+    
     if (!newPassword) {
         throw new AppError("New password is required", 400);
     }
