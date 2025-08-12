@@ -1,44 +1,50 @@
 {
-  // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    // File Layout
-    "rootDir": "./src",
-    "outDir": "./dist",
+    /* === Project Structure === */
+    "rootDir": "./src",              // Source files
+    "outDir": "./dist",              // Compiled output
 
-    // Environment Settings
-    // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
-    "target": "es2022",
-    "types": [],
-    // For nodejs:
-    // "lib": ["esnext"],
-    // "types": ["node"],
-    // and npm install -D @types/node
+    /* === Language & Environment === */
+    "module": "NodeNext",            // ES module support for Node.js
+    "moduleResolution": "NodeNext",  // Match module type
+    "target": "ES2022",               // Modern JS features, async/await, top-level await
+    "lib": ["ES2022"],               // Standard library for ES2022
+    "types": ["node"],               // Node.js type definitions
 
-    // Other Outputs
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
+    /* === Output Options === */
+    "sourceMap": true,               // Enable .map files for debugging
+    "declaration": true,             // Generate .d.ts for library usage
+    "declarationMap": true,          // Map .d.ts to source for debugging
 
-    // Stricter Typechecking Options
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
+    /* === Strictness & Type Safety === */
+    "strict": true,                  // Enable all strict type checks
+    "noImplicitAny": true,           // Force explicit typing
+    "noUnusedLocals": true,          // Catch unused variables
+    "noUnusedParameters": true,      // Catch unused function params
+    "noFallthroughCasesInSwitch": true, // Avoid unintended fallthrough
+    "noImplicitOverride": true,      // Require 'override' keyword
+    "exactOptionalPropertyTypes": true, // Make optional props truly optional
+    "noUncheckedIndexedAccess": true, // Safer array/obj access
 
-    // Style Options
-    // "noImplicitReturns": true,
-    // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noFallthroughCasesInSwitch": true,
-    // "noPropertyAccessFromIndexSignature": true,
+    /* === Module Behavior === */
+    "verbatimModuleSyntax": true,    // Keep import/export as is
+    "esModuleInterop": true,         // CommonJS <-> ESM interop
+    "allowSyntheticDefaultImports": true, // Allow default imports from CJS
 
-    // Recommended Options
-    "strict": true,
-    "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
-    "skipLibCheck": true,
-  }
+    /* === Build Performance === */
+    "skipLibCheck": true,            // Skip .d.ts type checks for faster builds
+    "forceConsistentCasingInFileNames": true, // Avoid casing mismatches
+
+    /* === Isolated Builds === */
+    "isolatedModules": true,         // Ensure each file is safe to transpile in isolation
+    "moduleDetection": "force",      // Force explicit module mode
+
+    /* === Import Rules === */
+    "resolveJsonModule": true,       // Allow importing JSON
+    "allowJs": false,                // Don't compile .js files
+    "checkJs": false,                // Don't type-check JS files
+    "noUncheckedSideEffectImports": true // Avoid accidental side-effect imports
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
 }

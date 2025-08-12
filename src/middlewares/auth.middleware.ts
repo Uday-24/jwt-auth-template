@@ -7,7 +7,7 @@ import { config } from "../config/env.config.js";
 
 export const authMiddleware = (
     req: Request,
-    res: Response,
+    _res: Response,
     next: NextFunction
 ) => {
     const authHeader = req.headers.authorization;
