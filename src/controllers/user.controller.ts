@@ -3,7 +3,7 @@ import type { Request, Response } from "express";
 import { User } from "../models/user.model.js";
 import type { IUser } from "../models/user.model.js";
 import { sendEmail } from "../utils/send-email.util.js";
-import { AppError } from "../utils/app-error.util.js";
+import AppError from "../utils/app-error.util.js";
 
 /**
  * @desc Forgot password - send password reset link to email

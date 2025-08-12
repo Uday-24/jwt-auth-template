@@ -1,5 +1,5 @@
 import { User } from "../models/user.model.js";
-import { AppError } from "../utils/app-error.util.js";
+import AppError from "../utils/app-error.util.js";
 import { generateAccessToken, generateRefreshToken, verifyToken } from "../utils/token.util.js";
 import type { RegisterDto, LoginDto, TokenPayloadDto } from "../dtos/auth.dto.js";
 import { config } from "../config/env.config.js";

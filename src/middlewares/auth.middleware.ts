@@ -1,7 +1,7 @@
 // middlewares/auth.middleware.ts
 import jwt from "jsonwebtoken";
 import type { Request, Response, NextFunction } from "express";
-import { AppError } from "../utils/app-error.util.js";
+import AppError from "../utils/app-error.util.js";
 import type { TokenPayloadDto } from "../dtos/auth.dto.js";
 import { config } from "../config/env.config.js";
 

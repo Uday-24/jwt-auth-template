@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import type { SignOptions } from "jsonwebtoken";
 import type { TokenPayloadDto } from "../dtos/auth.dto.js";
 import { config } from "../config/env.config.js";
-import { AppError } from "./app-error.util.js";
+import AppError from "./app-error.util.js";
 
 export const generateAccessToken = (payload: TokenPayloadDto) => {
     if (!config.jwtAccessSecret) {
